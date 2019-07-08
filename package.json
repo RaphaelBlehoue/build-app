@@ -1,0 +1,26 @@
+{
+  "name": "build-app",
+  "version": "0.1.0",
+  "description": "building Entreprise Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphydev/build-app.git"
+  },
+  "keywords": [
+    "Node.js",
+    "express.js",
+    "react.js",
+    "tdd",
+    "bdd"
+  ],
+  "author": "Raphael SAMPAN <raphaelsampan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raphydev/build-app/issues"
+  },
+  "homepage": "https://github.com/raphydev/build-app#readme"
+}
