@@ -4,6 +4,8 @@
   "description": "building Entreprise Application",
   "main": "index.js",
   "scripts": {
+    "build": "rimraf dist/ && babel src -d build",
+    "serve": "yarn run build && node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +24,15 @@
   "bugs": {
     "url": "https://github.com/raphydev/build-app/issues"
   },
-  "homepage": "https://github.com/raphydev/build-app#readme"
+  "homepage": "https://github.com/raphydev/build-app#readme",
+  "dependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/register": "^7.5.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "rimraf": "^2.6.3"
+  }
 }
