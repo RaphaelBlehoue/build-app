@@ -10,5 +10,4 @@ const requestHandler = function(req, res) {
 }
 
 const server = http.createServer(requestHandler)
-
 server.listen(9099)
