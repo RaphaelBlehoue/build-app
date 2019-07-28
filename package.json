@@ -6,7 +6,15 @@
   "scripts": {
     "build": "rimraf dist/ && babel src -d dist",
     "serve": "yarn run build && node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "nodemon -w src --exec yarn serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint"
+    }
   },
   "repository": {
     "type": "git",
@@ -33,6 +41,11 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.1",
+    "nodemon": "^1.19.1",
     "rimraf": "^2.6.3"
   }
 }
