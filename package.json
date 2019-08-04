@@ -9,7 +9,8 @@
     "watch": "nodemon -w src --exec yarn serve",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "lint:fix": "eslint src --fix",
+    "test:e2e": "cucumber-js spec/cucumber/features --require-module @babel/register --require spec/cucumber/steps"
   },
   "husky": {
     "hooks": {
@@ -34,13 +35,14 @@
   },
   "homepage": "https://github.com/raphydev/build-app#readme",
   "dependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/polyfill": "^7.4.4",
-    "@babel/register": "^7.5.5"
+    "@babel/polyfill": "^7.4.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "cucumber": "^5.1.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
