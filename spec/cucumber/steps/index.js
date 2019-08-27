@@ -2,8 +2,7 @@ import superagent from 'superagent';
 import assert from 'assert';
 import { When, Then } from 'cucumber';
 
-const port = process.env.PORT || 9099;
-const URL_API = `localhost:${port}`;
+const URL_API = `${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}`;
 const ERROR_BAD_REQUEST = 400;
 
 When('the client creates a POST request to /users', function () {
