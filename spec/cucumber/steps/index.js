@@ -1,12 +1,11 @@
 import superagent from 'superagent';
 import { When, Then } from 'cucumber';
 
-let request;
-let result;
-let error;
+const port = process.env.PORT || 9099;
+const URL_API = `localhost:${port}`;
 
 When('the client creates a POST request to /users', function () {
-  request = superagent('POST', 'localhost:9099/users');
+  this.request = superagent('POST', `${URL_API}/users`);
 });
 
 When('attaches a generic empty payload', function () {
@@ -14,25 +13,36 @@ When('attaches a generic empty payload', function () {
 });
 
 When('send the request', function (callback) {
-  request
+  this.request
     .then((response) => {
-      result = response.res;
+      this.response = response.res;
       callback();
     })
-    .catch((errorResponse) => {
-      error = errorResponse.response;
+    .catch((error) => {
+      this.response = error.response;
       callback();
     });
 });
 
 Then('our API should response with a 400 HTTP status code', function () {
-  if (error.statusCode !== 400) throw new Error();
+  if (this.response.statusCode !== 400) throw new Error();
 });
 
 Then('the payload of response should be a JSON object', function () {
-  return 'pending';
+  // check Content type Header
+  const contentType = this.response.headers['Content-Type'] || this.response.headers['content-type'];
+  if (!contentType || !contentType.includes('application/json')) {
+    throw new Error('Response not of Content-Type application/json');
+  }
+  try {
+    this.responsePayload = JSON.parse(this.response.text);
+  } catch (e) {
+    throw new Error('Response not a valid JSON object');
+  }
 });
 
 Then('contains a message property which says "Payload should not be empty"', function () {
-  return 'pending';
+  if (this.responsePayload.message !== 'Payload should not be empty') {
+    throw new Error();
+  }
 });
