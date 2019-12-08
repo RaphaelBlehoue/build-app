@@ -1,9 +1,8 @@
 {
   "cucumberautocomplete.steps": [
-    "spec/cucumber/steps/*.js",
-    "node_modules/qa-lib/src/step_definitions/*.js"
+    "spec/cucumber/steps/*.js"
   ],
-  "cucumberautocomplete.syncfeatures": "tests/features/*feature",
+  "cucumberautocomplete.syncfeatures": "spec/cucumber/fetures/users/create/*feature",
   "cucumberautocomplete.strictGherkinCompletion": true,
   "cucumberautocomplete.smartSnippets": true,
   "cucumberautocomplete.stepsInvariants": true,
