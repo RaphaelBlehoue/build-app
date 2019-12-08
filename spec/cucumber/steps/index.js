@@ -1,5 +1,5 @@
 import superagent from 'superagent';
-import assert from 'assert';
+import assert, { AssertionError } from 'assert';
 import { When, Then } from 'cucumber';
 
 const URL_API = `${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}`;
@@ -26,7 +26,12 @@ When('send the request', function (callback) {
 });
 
 Then('our API should response with a 400 HTTP status code', function () {
-  assert.equal(this.response.statusCode, ERROR_BAD_REQUEST);
+  if (this.response.statusCode !== ERROR_BAD_REQUEST) {
+    throw new AssertionError({
+      expected: ERROR_BAD_REQUEST,
+      actual: this.response.statusCode,
+    });
+  }
 });
 
 Then('the payload of response should be a JSON object', function () {
