@@ -1,8 +1,9 @@
 import superagent from 'superagent';
+import assert from 'assert';
 import { When, Then } from 'cucumber';
 
-const port = process.env.PORT || 9099;
-const URL_API = `localhost:${port}`;
+const URL_API = `${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}`;
+const ERROR_BAD_REQUEST = 400;
 
 When('the client creates a POST request to /users', function () {
   this.request = superagent('POST', `${URL_API}/users`);
@@ -25,7 +26,7 @@ When('send the request', function (callback) {
 });
 
 Then('our API should response with a 400 HTTP status code', function () {
-  if (this.response.statusCode !== 400) throw new Error();
+  assert.equal(this.response.statusCode, ERROR_BAD_REQUEST);
 });
 
 Then('the payload of response should be a JSON object', function () {
@@ -42,7 +43,5 @@ Then('the payload of response should be a JSON object', function () {
 });
 
 Then('contains a message property which says "Payload should not be empty"', function () {
-  if (this.responsePayload.message !== 'Payload should not be empty') {
-    throw new Error();
-  }
+  assert.equal(this.responsePayload.message, 'Payload should not be empty');
 });
